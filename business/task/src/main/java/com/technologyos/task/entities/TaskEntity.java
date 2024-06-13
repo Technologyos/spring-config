@@ -6,7 +6,7 @@ import lombok.Data;
 @Entity(name="Task")
 @Table(name = "tasks")
 @Data
-public class Task {
+public class TaskEntity {
 
     @Id
     @SequenceGenerator(name = "task_sequence", sequenceName = "task_sequence", allocationSize = 1)

@@ -12,6 +12,8 @@ eureka:
   instance:
     preferIpAddress: true
   client:
+    healthcheck:
+      enabled: true
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
@@ -22,12 +24,21 @@ spring:
     pathmatch:
       matching-strategy: ant-path-matcher
   application:
-    name: task
+    name: task-service
   #config server configuration
-  profiles:
-    active: local
   config:
-    import: optional:configserver:http://localhost:8085
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    config:
+      failFast: true
+      name: config-client
+      profile: local
+      #config-server credentials
+      username: admin
+      password: admin
+      retry:
+        max-attempts: 1
+        max-interval: 1000
 
 management:
   endpoints:
